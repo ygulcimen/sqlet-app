@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import ModernFileUploader from "../components/ModernFileUploader";
-import SchemaSummary from "./analysis/SchemaSummary";
-import SqlPanel from "./analysis/SqlPanel";
-import ChartSection from "./analysis/ChartSection";
-import ReactTable from "../components/ReactTable";
-import { ExcelContext } from "../context/ExcelContext";
+import ModernFileUploader from "../../components/uploader/ModernFileUploader";
+import SchemaSummary from "./SchemaSummary";
+import SqlPanel from "./SqlPanel";
+import ReactTable from "../../components/table/ReactTable";
+import { ExcelContext } from "../../context/ExcelContext";
 
 const AnalysisPage = () => {
   const { files } = useContext(ExcelContext);

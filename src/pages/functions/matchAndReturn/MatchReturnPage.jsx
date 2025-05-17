@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ExcelContext } from "../context/ExcelContext";
-import FileUploader from "../components/FileUploader";
-import MatchReturnHeader from "./functions/matchAndReturn/components/MatchReturnHeader";
-import DatasetSelector from "./functions/matchAndReturn/components/DataSelector";
-import MatchPreviewModal from "./functions/matchAndReturn/components/modals/MatchPreviewModal";
+import { ExcelContext } from "../../../context/ExcelContext";
+import FileUploader from "../../../components/uploader/FileUploader";
+import MatchReturnHeader from "./components/MatchReturnHeader";
+import DatasetSelector from "./components/DataSelector";
+import MatchPreviewModal from "./components/modals/MatchPreviewModal";
 
 const MatchReturnPage = () => {
   const { files } = useContext(ExcelContext);

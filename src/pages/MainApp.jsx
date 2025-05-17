@@ -17,10 +17,10 @@ import {
 import { ExcelProvider } from "../context/ExcelContext";
 import Sidebar from "../components/layout/Sidebar";
 import HomePage from "./HomePage";
-import AnalysisPage from "./AnalysisPage";
+import AnalysisPage from "./analysis/AnalysisPage";
 import FunctionsPage from "./FunctionsPage";
-import MatchReturnPage from "./MatchReturnPage";
-import DateCalculatorPage from "./functions/DateCalculatorPage";
+import MatchReturnPage from "./functions/matchAndReturn/MatchReturnPage";
+import DateCalculatorPage from "./functions/dateCalculator/DateCalculatorPage";
 import SettingsPage from "./SettingsPage";
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchableSelect from "../../../../components/SearchableSelect";
+import SearchableSelect from "../../../../components/filters/SearchableSelect";
 
 const DatasetSelector = ({
   title,

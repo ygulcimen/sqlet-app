@@ -1,6 +1,6 @@
 // src/pages/DateCalculatorPage.jsx
 import React from "react";
-import DateBulkProcessor from "./dateCalculator/DateBulkProcessor";
+import DateBulkProcessor from "./DateBulkProcessor";
 
 const DateCalculatorPage = () => {
   return (

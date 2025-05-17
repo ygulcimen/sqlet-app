@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { initDuckDB, runQuerySQL } from "../services/duckdbService";
+import { initDuckDB, runQuerySQL } from "../../services/duckdbService";
 
 const SQLRunner = ({ tableData, initialQuery }) => {
   const [query, setQuery] = useState(

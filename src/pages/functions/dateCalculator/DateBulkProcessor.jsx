@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import FunctionFileUploader from "../../../components/FunctionFileUploader";
+import FunctionFileUploader from "../../../components/uploader/FunctionFileUploader";
 import ReactTable from "../../../components/table/ReactTable";
-import SearchableSelect from "../../../components/SearchableSelect";
+import SearchableSelect from "../../../components/filters/SearchableSelect";
 import * as XLSX from "xlsx";
 
 const durationUnits = [

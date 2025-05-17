@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from "react";
-import { ExcelContext } from "../context/ExcelContext";
+import { ExcelContext } from "../../context/ExcelContext";
 import { FaFileExcel, FaTimesCircle } from "react-icons/fa";
 
 const FileUploader = ({ maxFiles = 2 }) => {
