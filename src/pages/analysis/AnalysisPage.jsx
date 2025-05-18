@@ -4,6 +4,7 @@ import SchemaSummary from "./SchemaSummary";
 import SqlPanel from "./SqlPanel";
 import ReactTable from "../../components/table/ReactTable";
 import { ExcelContext } from "../../context/ExcelContext";
+import SectionHeader from "../../components/ui/SectionHeader";
 
 const AnalysisPage = () => {
   const { files } = useContext(ExcelContext);
@@ -36,11 +37,9 @@ const AnalysisPage = () => {
 
       {files.length > 0 && (
         <>
-          {/* File Info */}
-          <div
-            id="fileinfo-section"
-            className="grid grid-cols-2 md:grid-cols-3 gap-4"
-          >
+          {/* File Info Section */}
+          <SectionHeader icon="📁" title="File Info" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="bg-gray-900 p-4 rounded shadow border border-gray-700">
               <label className="text-sm text-gray-400 block mb-1">
                 Excel File
@@ -77,41 +76,41 @@ const AnalysisPage = () => {
               {data.length} Rows • {headers.length} Columns
             </div>
           </div>
-          <div id="preview-section">
-            <ReactTable
-              data={filteredData.length > 0 ? displayData : data}
-              headers={filteredData.length > 0 ? displayHeaders : headers}
-              title={sqlQuery ? "Query Results" : "Full Data Preview"}
-            />
-          </div>
 
-          <div id="query-section">
-            <SqlPanel
-              data={data}
-              headers={headers}
-              onQuerySubmit={(result, rawQuery) => {
-                setFilteredData(result);
-                setSqlQuery(rawQuery);
-                if (result.length > 0) {
-                  setDisplayHeaders(Object.keys(result[0]));
-                  setDisplayData(result);
-                } else {
-                  setDisplayHeaders([]);
-                  setDisplayData([]);
-                }
-              }}
-              onClear={() => {
-                setFilteredData([]);
-                setSqlQuery("");
-                setDisplayHeaders(headers);
-                setDisplayData(data);
-              }}
-            />
-          </div>
+          <SectionHeader
+            icon="📊"
+            title={sqlQuery ? "Query Results" : "Full Data Preview"}
+          />
+          <ReactTable
+            data={filteredData.length > 0 ? displayData : data}
+            headers={filteredData.length > 0 ? displayHeaders : headers}
+          />
 
-          <div id="schema-section">
-            <SchemaSummary headers={headers} data={data} />
-          </div>
+          {/* SQL Panel */}
+          <SqlPanel
+            data={data}
+            headers={headers}
+            onQuerySubmit={(result, rawQuery) => {
+              setFilteredData(result);
+              setSqlQuery(rawQuery);
+              if (result.length > 0) {
+                setDisplayHeaders(Object.keys(result[0]));
+                setDisplayData(result);
+              } else {
+                setDisplayHeaders([]);
+                setDisplayData([]);
+              }
+            }}
+            onClear={() => {
+              setFilteredData([]);
+              setSqlQuery("");
+              setDisplayHeaders(headers);
+              setDisplayData(data);
+            }}
+          />
+
+          <SectionHeader icon="🧬" title="Schema Overview" />
+          <SchemaSummary headers={headers} data={data} />
         </>
       )}
     </div>

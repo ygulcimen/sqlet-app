@@ -3,6 +3,8 @@ import CodeMirror from "@uiw/react-codemirror";
 import { sql } from "@codemirror/lang-sql";
 import { oneDark } from "@codemirror/theme-one-dark";
 import alasql from "alasql";
+import Button from "../../components/ui/Button";
+import SectionHeader from "../../components/ui/SectionHeader";
 
 const SqlPanel = ({ data, headers, onQuerySubmit, onClear }) => {
   const [query, setQuery] = useState("SELECT * FROM data");
@@ -52,8 +54,7 @@ const SqlPanel = ({ data, headers, onQuerySubmit, onClear }) => {
 
   return (
     <div className="bg-gray-900 border border-gray-700 rounded p-4 space-y-4">
-      <h2 className="text-lg font-semibold text-green-400">🧠 SQL Editor</h2>
-
+      <SectionHeader icon="💻" title="SQL Editor" />
       <CodeMirror
         value={query}
         height="150px"
@@ -90,24 +91,13 @@ const SqlPanel = ({ data, headers, onQuerySubmit, onClear }) => {
       {error && <div className="text-red-400 text-sm mt-2">❌ {error}</div>}
 
       <div className="flex flex-wrap gap-4 mt-2">
-        <button
-          onClick={handleRun}
-          className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white font-medium"
-        >
-          ▶ Run Query
-        </button>
-        <button
-          onClick={handleClear}
-          className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-white"
-        >
+        <Button onClick={handleRun}>▶ Run Query</Button>
+        <Button onClick={handleClear} variant="secondary">
           🧹 Clear
-        </button>
-        <button
-          onClick={handleSave}
-          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
-        >
+        </Button>
+        <Button onClick={handleSave} variant="ghost">
           💾 Save Query
-        </button>
+        </Button>
       </div>
     </div>
   );

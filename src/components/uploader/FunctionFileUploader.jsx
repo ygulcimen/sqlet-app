@@ -1,4 +1,4 @@
-// src/components/FunctionFileUploader.jsx
+// src/components/uploader/FunctionFileUploader.jsx
 import React, { useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import { FaFileUpload, FaTimesCircle } from "react-icons/fa";
@@ -12,41 +12,35 @@ const FunctionFileUploader = ({ onFileParsed }) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const data = await file.arrayBuffer();
-    const workbook = XLSX.read(data, { type: "array" });
+    const arrayBuffer = await file.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: "array" });
 
-    const parsedSheets = workbook.SheetNames.map((name) => {
-      const worksheet = workbook.Sheets[name];
-
-      const rawData = XLSX.utils.sheet_to_json(worksheet, {
+    const parsedSheets = workbook.SheetNames.map((sheetName) => {
+      const formatted = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {
         defval: "",
-        raw: true, // for calculations (serials etc)
+        raw: false,
+      });
+      const raw = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {
+        defval: "",
+        raw: true,
       });
 
-      const formattedData = XLSX.utils.sheet_to_json(worksheet, {
-        defval: "",
-        raw: false, // for UI preview
-      });
-
-      const merged = formattedData.map((row, i) => ({
+      const merged = formatted.map((row, i) => ({
         ...row,
-        __raw: rawData[i] || {},
+        __raw: raw[i] || {},
       }));
 
-      const headers =
-        formattedData.length > 0 ? Object.keys(formattedData[0]) : [];
-
       return {
-        name,
+        name: sheetName,
         data: merged,
-        headers,
+        headers: Object.keys(merged[0] || {}).filter((h) => h !== "__raw"),
       };
     });
 
     setFileName(file.name);
     setSheets(parsedSheets);
-    onFileParsed(parsedSheets, file.name);
     inputRef.current.value = "";
+    onFileParsed(parsedSheets, file.name);
   };
 
   const clearUpload = () => {

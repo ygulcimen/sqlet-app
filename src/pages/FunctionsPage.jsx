@@ -1,4 +1,3 @@
-// src/pages/FunctionsPage.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,31 +8,12 @@ import {
   FaBrain,
 } from "react-icons/fa";
 
-const FunctionCard = ({ icon, title, description, comingSoon, path }) => {
-  const navigate = useNavigate();
-  const isClickable = !comingSoon && path;
-
-  return (
-    <div
-      className={`bg-gray-800 rounded-lg p-5 text-white shadow transition-all ${
-        isClickable
-          ? "hover:shadow-lg cursor-pointer"
-          : "opacity-60 cursor-not-allowed"
-      }`}
-      onClick={isClickable ? () => navigate(path) : undefined}
-    >
-      <div className="flex items-center gap-3 text-xl font-semibold mb-2">
-        <span className="text-green-400">{icon}</span> {title}
-      </div>
-      <p className="text-gray-300 text-sm mb-3">{description}</p>
-      {comingSoon && (
-        <span className="text-xs text-yellow-400 italic">Coming soon...</span>
-      )}
-    </div>
-  );
-};
+import SectionHeader from "../components/ui/SectionHeader";
+import SmartCard from "../components/ui/SmartCard";
 
 const FunctionsPage = () => {
+  const navigate = useNavigate();
+
   const functions = [
     {
       icon: <FaSearch />,
@@ -48,7 +28,6 @@ const FunctionsPage = () => {
       description: "Verilen tarihe göre süre ekleyerek sonucu hesapla.",
       path: "/functions/date-calculate",
     },
-
     {
       icon: <FaExchangeAlt />,
       title: "ÇAPRAZARA (Cross-Lookup)",
@@ -76,13 +55,24 @@ const FunctionsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-10 py-10">
-      <h1 className="text-3xl font-bold text-green-400 mb-6">
-        ⚙️ Smart Functions
-      </h1>
+    <div className="min-h-screen bg-gray-950 text-white px-10 py-10 space-y-6">
+      <SectionHeader icon="⚙️" title="Smart Functions" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {functions.map((func, i) => (
-          <FunctionCard key={i} {...func} />
+          <SmartCard
+            key={i}
+            icon={func.icon}
+            title={func.title}
+            comingSoon={func.comingSoon}
+            onClick={() => !func.comingSoon && func.path && navigate(func.path)}
+          >
+            <p className="text-gray-300 text-sm mb-2">{func.description}</p>
+            {func.comingSoon && (
+              <span className="text-xs text-yellow-400 italic">
+                Coming soon...
+              </span>
+            )}
+          </SmartCard>
         ))}
       </div>
     </div>

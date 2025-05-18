@@ -1,14 +1,13 @@
 import React from "react";
 
 const MatchReturnHeader = () => (
-  <div className="mb-6">
-    <h1 className="text-3xl font-bold text-green-400 mb-2">
-      🔍 Match & Return
-    </h1>
-    <p className="text-gray-400">
-      Upload up to <strong>2 Excel files</strong>. Select sheets and columns to
-      match rows between them.
-    </p>
+  <div className="text-sm text-gray-400 max-w-3xl leading-relaxed">
+    Upload up to <strong>2 Excel files</strong>. You can match data:
+    <ul className="list-disc list-inside mt-2 space-y-1">
+      <li>Between two different files (File A ➜ File B)</li>
+      <li>Or within the same file (Sheet A ➜ Sheet B)</li>
+    </ul>
+    Select which columns to compare and which column to return.
   </div>
 );
 

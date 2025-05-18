@@ -18,9 +18,6 @@ const SchemaSummary = ({ headers, data }) => {
 
   return (
     <div className="mb-8">
-      <h2 className="text-xl font-semibold text-green-300 mb-3">
-        🧬 Schema Overview
-      </h2>
       <div className="overflow-x-auto rounded border border-gray-700">
         <table className="min-w-full text-sm text-left text-white bg-gray-900">
           <thead className="bg-gray-800 border-b border-gray-700">
